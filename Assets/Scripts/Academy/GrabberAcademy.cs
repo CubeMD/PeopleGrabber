@@ -5,9 +5,9 @@ using MLAgents;
 
 public class GrabberAcademy : Academy
 {
-    public GameObject agentsGO;
-    public GameObject rewardsGO;
-    public GameObject obstaclesGO;
+    //public GameObject agentsGO;
+    //public GameObject rewardsGO;
+    //public GameObject obstaclesGO;
 
     public override void InitializeAcademy()
     {

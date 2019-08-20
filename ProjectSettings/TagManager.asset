@@ -4,11 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Npc
   - Floor
-  - Obstacle
-  - Reward
-  - Block
-  - Agent
   layers:
   - Default
   - TransparentFX
@@ -18,9 +15,9 @@ TagManager:
   - UI
   - 
   - 
-  - BrainPerceptable
-  - 
-  - 
+  - PostProcessing
+  - Player
+  - NPC
   - 
   - 
   - 

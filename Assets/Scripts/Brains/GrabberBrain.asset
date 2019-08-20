@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GrabberBrain
   m_EditorClassIdentifier: 
   brainParameters:
-    vectorObservationSize: 110
+    vectorObservationSize: 111
     numStackedVectorObservations: 1
     vectorActionSize: 02000000
     cameraResolutions: []

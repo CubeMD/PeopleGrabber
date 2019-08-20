@@ -19,11 +19,29 @@ public class GrabberAgent : Agent
     public int observationRadius;
     public bool showDebug;
 
-    private Rigidbody rb;
+    public Rigidbody rb;
+
+    public int amount;
+    Vector3 moveDir = Vector3.zero;
+    public Color color;
+
+    //for player
+    public float speed;
+    public CharacterController controller;
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        amount = 1;
+
+        //Set color
+        //color = Random.ColorHSV();
+        color.a = .4f;
+
+        gameObject.GetComponentInChildren<Renderer>().material.SetColor("_Color", color);
+        gameObject.GetComponentInChildren<Renderer>().material.SetColor("_OutlineColor", color);
+
     }
 
     public override void CollectObservations()
@@ -209,31 +227,94 @@ public class GrabberAgent : Agent
 
     public override void AgentAction(float[] vectorAction, string textAction)
     {
-        Vector3 dir = new Vector3(Mathf.Clamp(vectorAction[0], -1f, 1f), 0, Mathf.Clamp(vectorAction[1], -1f, 1f));
+        //Vector3 dir = new Vector3(Mathf.Clamp(vectorAction[0], -1f, 1f), 0, Mathf.Clamp(vectorAction[1], -1f, 1f));
 
-        rb.AddForce(dir.normalized *  force);
+        //rb.AddForce(dir.normalized *  force);
 
-        rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0 , maxVel);
+        //rb.velocity = rb.velocity.normalized * Mathf.Clamp(rb.velocity.magnitude, 0 , maxVel);
 
-        AddReward(rb.velocity.magnitude / maxVel * -0.1f);
-        AddReward(0.1f);
+        //AddReward(rb.velocity.magnitude / maxVel * -0.1f);
+        //AddReward(0.1f);
 
-        health -= healthDecay * Time.deltaTime;
+        //health -= healthDecay * Time.deltaTime;
 
-        AddReward(-(100f - health) / 100f);
+       // AddReward(-(100f - health) / 100f);
 
-        if (health <= 0)
+       // if (health <= 0)
+       // {
+       //     AddReward(-1f);
+       //     Done();
+       // }
+
+
+        moveDir = new Vector3(Mathf.Clamp(vectorAction[0], -1f, 1f), 0, Mathf.Clamp(vectorAction[1], -1f, 1f));
+        moveDir *= speed;
+
+        controller.Move(moveDir * Time.deltaTime);
+
+        if (moveDir != Vector3.zero)
+            transform.rotation = Quaternion.LookRotation(moveDir);
+        CheckCollider();
+    }
+
+    void SetDir()
+    {
+        moveDir = transform.position + Random.insideUnitSphere * Random.Range(10, 40);
+    }
+    public void AddAmount(int number)
+    {
+        amount += number;
+        GameManager.GM.UpdateStat();
+    }
+    public void AddNpc(GameObject npc)
+    {
+        NpcController npcController = npc.GetComponent<NpcController>();
+
+        if (npcController.currentState == NpcController.State.Wondering)
         {
-            AddReward(-1f);
-            Done();
+            npcController.AddPlayer(gameObject);
+            AddAmount(1);
+        }
+        else if (npcController.currentState == NpcController.State.Following && npcController.player != gameObject)
+        {
+            if (npcController.player.GetComponent<GrabberAgent>().amount < amount)
+            {
+                npcController.player.GetComponent<GrabberAgent>().AddAmount(-1);
+                npcController.AddPlayer(gameObject);
+                AddAmount(1);
+            }
+        }
+    }
+
+    public void KillPlayer(GameObject player)
+    {
+        if (player.GetComponent<GrabberAgent>().amount == 1)
+        {
+            GameManager.GM.DestroyPlayer(player);
+            Debug.Log("Player was killed");
+            GameManager.GM.SpawnFollowers(gameObject);
+        }
+    }
+    public void CheckCollider()
+    {
+        foreach (Collider col in Physics.OverlapSphere(transform.position, 2))
+        {
+            if (col.gameObject.tag == "Npc" && col.GetComponent<NpcController>().player != gameObject)
+            {
+                AddNpc(col.gameObject);
+            }
+            else if (col.gameObject.tag == "Player" && col.GetComponent<GrabberAgent>().amount < amount)
+            {
+                KillPlayer(col.gameObject);
+            }
         }
     }
 
     public override void AgentReset()
     {
-        transform.localPosition = Vector3.zero;
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+        //transform.localPosition = Vector3.zero;
+        //rb.velocity = Vector3.zero;
+        //rb.angularVelocity = Vector3.zero;
         health = 100;
     }
 
