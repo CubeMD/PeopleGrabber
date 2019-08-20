@@ -193,7 +193,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: -0.03125, y: 0, z: 7, w: 6}
+  m_BoundingSphereOverride: {x: 524336, y: 3.8685626e+25, z: 1.9721523e-31, w: 1.5777218e-30}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -244,7 +244,7 @@ MonoBehaviour:
     broadcastingBrains:
     - {fileID: 11400000, guid: b67a28cb2f2cf444baa3dbd2813678d8, type: 2}
     _brainsToControl: []
-  maxSteps: 0
+  maxSteps: 100000
   trainingConfiguration:
     width: 80
     height: 80
@@ -342,6 +342,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471805768528608814, guid: 674eeb22c0296ee4ebdef20d8de6e67f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 674eeb22c0296ee4ebdef20d8de6e67f, type: 3}
