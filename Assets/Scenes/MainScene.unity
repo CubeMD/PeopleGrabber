@@ -22845,19 +22845,17 @@ MonoBehaviour:
   agentTemplate: {fileID: 7875934024653699111, guid: d48b721819e02d94cb505558b10370a5,
     type: 3}
   agentsParent: {fileID: 1404255268}
-  agentTeams:
-  - teamColor: {r: 1, g: 0.427451, b: 0, a: 1}
-  - teamColor: {r: 0.48235294, g: 0.7529412, b: 0.2627451, a: 1}
-  - teamColor: {r: 0.46666667, g: 0, b: 0.9098039, a: 1}
-  - teamColor: {r: 1, g: 0.03137255, b: 0.03137255, a: 1}
-  - teamColor: {r: 0, g: 0.6117647, b: 0.8, a: 1}
-  - teamColor: {r: 1, g: 1, b: 0.043137256, a: 1}
-  - teamColor: {r: 0.9490197, g: 0, b: 1, a: 1}
-  - teamColor: {r: 0, g: 0, b: 0.518, a: 1}
-  - teamColor: {r: 0.25098038, g: 0.5683506, b: 1, a: 1}
-  - teamColor: {r: 0.89019614, g: 0.69803923, b: 0.48235297, a: 1}
-  - teamColor: {r: 0, g: 1, b: 0.62456584, a: 1}
-  - teamColor: {r: 0.5176471, g: 0, b: 0.27800545, a: 1}
+  teamColors:
+  - {r: 1, g: 0.427451, b: 0, a: 1}
+  - {r: 0.48235294, g: 0.7529412, b: 0.2627451, a: 1}
+  - {r: 0.46666667, g: 0, b: 0.9098039, a: 1}
+  - {r: 1, g: 0.03137255, b: 0.03137255, a: 1}
+  - {r: 0, g: 0.6117647, b: 0.8, a: 1}
+  - {r: 1, g: 1, b: 0.043137256, a: 1}
+  - {r: 0.9490197, g: 0, b: 1, a: 1}
+  - {r: 0, g: 0, b: 0.518, a: 1}
+  - {r: 0, g: 0.27450982, b: 0.3372549, a: 1}
+  - {r: 0.89019614, g: 0.69803923, b: 0.48235297, a: 1}
   amountFollowersForKill: 10
   followersSpawnRange: {x: 2, y: 10}
   npcWalkerTemplate: {fileID: 7946091941609479585, guid: 04ecb5e8a2b654945ab0d927c6a0b33c,
