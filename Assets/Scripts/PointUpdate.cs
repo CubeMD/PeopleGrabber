@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -14,7 +15,7 @@ public class PointUpdate : MonoBehaviour
     float panelWidth;
     float panelHeight;
 
-    private void Start()
+    /*private void Start()
     {
         playerAgent = player.GetComponent<GrabberAgent>();
         GetComponentInChildren<RawImage>().color = playerAgent.color;
@@ -38,7 +39,7 @@ public class PointUpdate : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
+    }*/
 
 
 }
