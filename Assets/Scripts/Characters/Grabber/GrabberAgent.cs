@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Grabber;
 using Unity.MLAgents;
 using UnityEngine;
-using Walker;
-using Random = UnityEngine.Random;
 
-namespace Player
+namespace Characters.Grabber
 {
     [RequireComponent(typeof(CharacterVisualization))]
     public class GrabberAgent : Agent, ITeamConvertable
@@ -20,8 +15,8 @@ namespace Player
         [SerializeField]
         private CharacterVisualization characterVisualization;
        
-        private AgentTeam agentTeam;
-        public AgentTeam AgentTeam => agentTeam;
+        private Team currentTeam;
+        public Team CurrentTeam => currentTeam;
 
         private void OnValidate()
         {
@@ -31,12 +26,23 @@ namespace Player
             }
         }
 
-        public void SetTeam(AgentTeam team)
+        public void SetTeam(Team team)
         {
-            agentTeam = team;
-            characterVisualization.SetCharacterColor(team.teamColor);
+            this.currentTeam = team;
+            characterVisualization.SetCharacterColor(team.TeamColor);
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent(out ITeamConvertable convertable))
+            {
+                if (convertable.CanBeConverted(currentTeam))
+                {
+                    convertable.Convert(currentTeam);
+                }
+            }
+        }
+        
 
         /*public override void CollectObservations()
     {
@@ -335,109 +341,15 @@ namespace Player
         }
 
     }*/
-
-
-
-        public bool CanBeConverted(int walkersAmount)
-        {
-            return agentTeam.WalkerCount < 1;
-        }
-
-        public void Convert(AgentTeam team)
-        {
-            OnAnyAgentDeath?.Invoke(this, team.agent);
-        }
-    }
-
-    public interface IConvertableListener
-    {
-        bool OnConvertableEnter(ITeamConvertable convertable);
-    }
-    
-    public class ConvertableTrigger : MonoBehaviour
-    {
-        private const float TRIGGER_DELAY = 0.5f;
         
-        private IConvertableListener listener;
-        private bool isResetting = false;
-        private Coroutine resetRoutine;
-        private List<ITeamConvertable> convertablesWhileInReset = new List<ITeamConvertable>();
-
-        private void Awake()
+        public bool CanBeConverted(Team team)
         {
-            listener = GetComponent<IConvertableListener>();
-            if (listener == null)
-            {
-                enabled = false;
-            }
+            return team != this.currentTeam && this.currentTeam.WalkerCount < 1;
         }
 
-        private void OnDisable()
+        public void Convert(Team team)
         {
-            if (resetRoutine != null)
-            {
-                StopCoroutine(resetRoutine);
-                resetRoutine = null;
-            }
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.TryGetComponent(out ITeamConvertable teamConvertable))
-            {
-                if (isResetting)
-                {
-                    if (!convertablesWhileInReset.Contains(teamConvertable))
-                    {
-                        convertablesWhileInReset.Add(teamConvertable);
-                    }
-                }
-                else
-                {
-                    BroadcastConvertableEnter(teamConvertable);
-                }
-            }
-        }
-
-        private void BroadcastConvertableEnter(ITeamConvertable convertable)
-        {
-            if(listener.OnConvertableEnter(convertable))
-            {
-                StartResetRoutine();
-            }
-        }
-        
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.TryGetComponent(out ITeamConvertable teamConvertable))
-            {
-                if (convertablesWhileInReset.Contains(teamConvertable))
-                {
-                    convertablesWhileInReset.Remove(teamConvertable);
-                }
-            }
-        }
-
-        private void StartResetRoutine()
-        {
-            resetRoutine ??= StartCoroutine(ResetRoutine());
-        }
-
-        private IEnumerator ResetRoutine()
-        {
-            isResetting = true;
-            yield return new WaitForSeconds(TRIGGER_DELAY);
-            isResetting = false;
-            resetRoutine = null;
-        }
-
-        private void CheckStayedConvertables()
-        {
-            if (convertablesWhileInReset.Count > 1)
-            {
-                ITeamConvertable random = convertablesWhileInReset[Random.Range(0, convertablesWhileInReset.Count)];
-                BroadcastConvertableEnter(random);
-            }
+            OnAnyAgentDeath?.Invoke(this, team.Agent);
         }
     }
 }

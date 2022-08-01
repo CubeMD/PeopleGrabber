@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Grabber
+namespace Characters
 {
     public class CharacterVisualization : MonoBehaviour
     {

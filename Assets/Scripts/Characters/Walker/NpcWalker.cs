@@ -1,11 +1,10 @@
 ﻿using System;
-using Grabber;
-using Player;
+using Characters.Walker.States;
+using StateMachine;
 using UnityEngine;
 using UnityEngine.AI;
-using Walker.States;
 
-namespace Walker
+namespace Characters.Walker
 {
     [RequireComponent(typeof(StateMachine.StateMachine), typeof(NavMeshAgent), typeof(CharacterVisualization))]
     public class NpcWalker : MonoBehaviour, ITeamConvertable
@@ -34,8 +33,6 @@ namespace Walker
         [SerializeField]
         private float followingSpeed = 8f;
 
-        private AgentTeam agentTeam;
-        
         private void OnValidate()
         {
             if (stateMachine == null)
@@ -59,15 +56,9 @@ namespace Walker
             stateMachine.SetActiveState(new WalkerWonderingState(this, wonderingStoppingDistance, wonderingSpeed));
         }
 
-        private void OnDisable()
+        public void ForceTeam(Team team)
         {
-            agentTeam = null;
-        }
-
-        public void ForceTeam(AgentTeam team)
-        {
-            agentTeam = team;
-            stateMachine.SetActiveState(new WalkerFollowingState(this, followingStoppingDistance, followingSpeed, agentTeam.agent));
+            stateMachine.SetActiveState(new WalkerFollowingState(this, followingStoppingDistance, followingSpeed, team));
         }
         
         public void BroadcastAgentFollowBegun()
@@ -75,12 +66,19 @@ namespace Walker
             OnAnyWalkerBegunAgentFollow?.Invoke(this);
         }
 
-        public bool CanBeConverted(int walkersAmount)
+        public bool CanBeConverted(Team team)
         {
-            return agentTeam == null || agentTeam.WalkerCount < walkersAmount;
+            State activeState = stateMachine.GetActiveState();
+            
+            if (activeState is WalkerFollowingState followingState)
+            {
+                return followingState.CanSwitchTeam(team);
+            }
+
+            return true;
         }
 
-        public void Convert(AgentTeam team)
+        public void Convert(Team team)
         {
             ForceTeam(team);
         }

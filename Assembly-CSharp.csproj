@@ -52,26 +52,24 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Walker\States\WalkerFollowingState.cs" />
+     <Compile Include="Assets\Scripts\Characters\Walker\States\WalkerFollowingState.cs" />
      <Compile Include="Assets\Scripts\StateMachine\StateMachine.cs" />
      <Compile Include="Assets\Scripts\Utilities\ObjectPooler.cs" />
      <Compile Include="Assets\Scripts\Utilities\Singleton.cs" />
      <Compile Include="Assets\Scripts\StateMachine\EmptyState.cs" />
-     <Compile Include="Assets\Scripts\Grabber\GrabberAgent.cs" />
-     <Compile Include="Assets\Scripts\PointUpdate.cs" />
-     <Compile Include="Assets\Scripts\AnimationController.cs" />
-     <Compile Include="Assets\Scripts\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\Characters\Grabber\GrabberAgent.cs" />
+     <Compile Include="Assets\Scripts\UI\PointUpdate.cs" />
+     <Compile Include="Assets\Scripts\Camera\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\StateMachine\State.cs" />
-     <Compile Include="Assets\Scripts\Walker\States\WalkerWonderingState.cs" />
-     <Compile Include="Assets\Scripts\CharactersSpawner.cs" />
-     <Compile Include="Assets\Scripts\Walker\States\BaseWalkerState.cs" />
-     <Compile Include="Assets\Scripts\Walker\NpcWalker.cs" />
+     <Compile Include="Assets\Scripts\Characters\Walker\States\WalkerWonderingState.cs" />
      <Compile Include="Assets\Scripts\Utilities\Extensions\NavMeshExtension.cs" />
+     <Compile Include="Assets\Scripts\Characters\ITeamConvertable.cs" />
+     <Compile Include="Assets\Scripts\Characters\Team.cs" />
      <Compile Include="Assets\Scripts\Utilities\Extensions\ColorExtension.cs" />
-     <Compile Include="Assets\Scripts\GameStatics.cs" />
-     <Compile Include="Assets\Scripts\Grabber\CharacterVisualization.cs" />
-     <Compile Include="Assets\Scripts\ITeamConvertable.cs" />
-     <Compile Include="Assets\Scripts\AgentTeam.cs" />
+     <Compile Include="Assets\Scripts\Characters\CharacterVisualization.cs" />
+     <Compile Include="Assets\Scripts\Characters\CharactersSpawner.cs" />
+     <Compile Include="Assets\Scripts\Characters\Walker\States\BaseWalkerState.cs" />
+     <Compile Include="Assets\Scripts\Characters\Walker\NpcWalker.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
@@ -843,6 +841,14 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="NavMeshComponents.csproj">
+      <Project>{3544e6d4-b81e-bd06-b5f5-9ca7a3b052cf}</Project>
+      <Name>NavMeshComponents</Name>
+    </ProjectReference>
+    <ProjectReference Include="NavMeshComponentsEditor.csproj">
+      <Project>{c6d621f6-c34b-aff5-fa8e-55e40a496772}</Project>
+      <Name>NavMeshComponentsEditor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

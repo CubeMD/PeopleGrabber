@@ -30,6 +30,15 @@ namespace StateMachine
         }
 
         /// <summary>
+        /// Gets the currently active State for this StateMachine
+        /// </summary>
+        /// <returns></returns>
+        public State GetActiveState()
+        {
+            return activeState;
+        }
+        
+        /// <summary>
         /// Terminates the active State, sets the given State to active immediately and clears the State queue.
         /// </summary>
         /// <param name="state">State to set active</param>

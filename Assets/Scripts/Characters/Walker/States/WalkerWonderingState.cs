@@ -1,7 +1,7 @@
 using UnityEngine;
 using Utilities.Extensions;
 
-namespace Walker.States
+namespace Characters.Walker.States
 {
     public class WalkerWonderingState : BaseWalkerState
     {

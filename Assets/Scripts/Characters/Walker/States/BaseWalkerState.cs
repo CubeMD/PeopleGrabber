@@ -1,10 +1,8 @@
-using Grabber;
-using Player;
 using StateMachine;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Walker.States
+namespace Characters.Walker.States
 {
     public abstract class BaseWalkerState : State
     {

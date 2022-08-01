@@ -1,21 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Player;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using Characters.Grabber;
 using TMPro;
+using UnityEngine;
 
-public class PointUpdate : MonoBehaviour
+namespace UI
 {
-    public GameObject player;
-    GrabberAgent playerAgent;
+    public class PointUpdate : MonoBehaviour
+    {
+        public GameObject player;
+        GrabberAgent playerAgent;
 
-    TextMeshProUGUI amountText;
-    public Vector3 pos;
-    float panelWidth;
-    float panelHeight;
+        TextMeshProUGUI amountText;
+        public Vector3 pos;
+        float panelWidth;
+        float panelHeight;
 
-    /*private void Start()
+        /*private void Start()
     {
         playerAgent = player.GetComponent<GrabberAgent>();
         GetComponentInChildren<RawImage>().color = playerAgent.color;
@@ -42,4 +41,5 @@ public class PointUpdate : MonoBehaviour
     }*/
 
 
+    }
 }
