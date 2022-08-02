@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8728526025660320174}
   - component: {fileID: 7943977506448008226}
   - component: {fileID: 6940885374561562165}
-  - component: {fileID: 7696760842581275398}
   m_Layer: 0
   m_Name: Building_I_1
   m_TagString: Untagged
@@ -111,19 +110,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 13.891472, y: 7.0448074, z: 16.385885}
   m_Center: {x: 5.601678, y: 4.2600026, z: 8.192943}
---- !u!208 &7696760842581275398
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1934853517836424}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 6.946, y: 3.522, z: 8.193001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 5.602, y: 4.26, z: 8.193001}
-  m_TimeToStationary: 0.5

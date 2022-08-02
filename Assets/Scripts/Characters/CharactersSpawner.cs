@@ -53,7 +53,6 @@ namespace Characters
 
         private Vector4 envSize = Vector4.zero;
         private readonly List<Vector3> cachePositions = new List<Vector3>();
-        private readonly List<Vector3> cachePositionsWalkers = new List<Vector3>();
         private readonly List<NpcWalker> activeNpcWalkers = new List<NpcWalker>();
         private readonly List<GrabberAgent> activeAgents = new List<GrabberAgent>();
         private Coroutine characterSpawnRoutine;
@@ -63,13 +62,10 @@ namespace Characters
             NpcWalker.OnAnyWalkerBegunAgentFollow += HandleAnyWalkerBegunAgentFollow;
             GrabberAgent.OnAnyAgentDeath += HandleAnyAgentDeath;
             CalculateNavMeshSize();
-            int mask = 1 << NavMesh.GetAreaFromName("Walkable");
-            Debug.Log(mask);
         }
 
         private void Start()
         {
-            cachePositionsWalkers.Clear();
             StartSpawnRoutine();
         }
 
@@ -168,16 +164,16 @@ namespace Characters
             Debug.LogWarning($"Wasn't able to find any position on navmesh after {MAX_RETRY_AMOUNT} retries");
         }
     
-        private void SpawnFollowersForAgent(GrabberAgent agent)
+        private void SpawnFollowersForAgent(Team team)
         {
             for (int i = 0; i < amountFollowersForKill; i++)
             {
                 for (int j = 0; j < MAX_RETRY_AMOUNT; j++)
                 {
-                    Vector3 randomPosition = agent.transform.position + Random.insideUnitSphere * Random.Range(followersSpawnRange.x, followersSpawnRange.y);
+                    Vector3 randomPosition = team.Agent.transform.position + Random.insideUnitSphere * Random.Range(followersSpawnRange.x, followersSpawnRange.y);
                     if (TryToSpawnNpcNearPosition(randomPosition, out NpcWalker npc))
                     {
-                        npc.ForceTeam(agent.CurrentTeam);
+                        npc.ForceTeam(team);
                         break;
                     }
                 }
@@ -189,7 +185,6 @@ namespace Characters
             if (NavMeshExtension.TryToGetNavMeshPosition(position, out Vector3 spawnPosition))
             {
                 npc = ObjectPooler.Instantiate(npcWalkerTemplate, spawnPosition, Quaternion.identity, walkersParent);
-                cachePositionsWalkers.Add(spawnPosition);
                 return true;
             }
 
@@ -205,12 +200,12 @@ namespace Characters
             }
         }
         
-        private void HandleAnyAgentDeath(GrabberAgent killedAgent, GrabberAgent killer)
+        private void HandleAnyAgentDeath(GrabberAgent killedAgent, Team killerTeam)
         {
             if (activeAgents.Contains(killedAgent))
             {
                 activeAgents.Remove(killedAgent);
-                SpawnFollowersForAgent(killer);
+                SpawnFollowersForAgent(killerTeam);
             
                 if (activeAgents.Count < 2)
                 {
@@ -229,18 +224,12 @@ namespace Characters
 
         private void OnDrawGizmos()
         {
-            for (int i = 0; i < cachePositions.Count; i++)
+            /*for (int i = 0; i < cachePositions.Count; i++)
             {
                 Vector3 position = cachePositions[i];
                 Gizmos.color = teamColors[i];
                 Gizmos.DrawSphere(position, 1);
-            }
-
-            foreach (Vector3 positionsWalker in cachePositionsWalkers)
-            {
-                Gizmos.color = Color.grey;
-                Gizmos.DrawSphere(positionsWalker, 1);
-            }
+            }*/
         }
     }
 }

@@ -12,13 +12,12 @@ GameObject:
   - component: {fileID: 8713548154298166475}
   - component: {fileID: 4008844197808320485}
   - component: {fileID: 4632466761301418839}
-  - component: {fileID: 5222651759661806634}
   m_Layer: 0
   m_Name: Building_A1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967294
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4541227407256296
 Transform:
@@ -104,19 +103,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.001537, y: 10.027083, z: 17.854418}
   m_Center: {x: 4.7007685, y: 2.0792267, z: 8.927209}
---- !u!208 &5222651759661806634
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212380520111254}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 5.0010004, y: 5.0140004, z: 8.927}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 4.701, y: 2.079, z: 8.927}
-  m_TimeToStationary: 0.5

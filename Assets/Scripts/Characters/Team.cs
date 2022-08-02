@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Characters.Grabber;
 using Characters.Walker;
@@ -7,6 +8,8 @@ namespace Characters
 {
     public class Team
     {
+        public event Action<Team, float> OnTeamWalkersSizeChanged; 
+        
         public GrabberAgent Agent { get; }
         public Color TeamColor { get; }
         
@@ -15,14 +18,15 @@ namespace Characters
 
         public Team(GrabberAgent agent, Color teamColor)
         {
-            this.Agent = agent;
-            this.TeamColor = teamColor;
+            Agent = agent;
+            TeamColor = teamColor;
             walkers.Clear();
         }
 
         public void AddWalker(NpcWalker walker)
         {
             walkers.Add(walker);
+            OnTeamWalkersSizeChanged?.Invoke(this, 1);
         }
 
         public void RemoveWalker(NpcWalker walker)
@@ -30,6 +34,7 @@ namespace Characters
             if (walkers.Contains(walker))
             {
                 walkers.Remove(walker);
+                OnTeamWalkersSizeChanged?.Invoke(this, -1);
             }
         }
     }

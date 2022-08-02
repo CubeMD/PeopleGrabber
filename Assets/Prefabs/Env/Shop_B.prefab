@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7843890243408966396}
   - component: {fileID: 7849841484795420786}
   - component: {fileID: 4534351565562015277}
-  - component: {fileID: 467736832287553786}
   m_Layer: 0
   m_Name: Shop_B
   m_TagString: Untagged
@@ -110,19 +109,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 14.29284, y: 11.945904, z: 3.5894365}
   m_Center: {x: 5.437592, y: 6.972951, z: 1.7947152}
---- !u!208 &467736832287553786
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7829395065747792606}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 7.1460004, y: 5.973, z: 1.7950001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 5.438, y: 6.9730005, z: 1.7950001}
-  m_TimeToStationary: 0.5

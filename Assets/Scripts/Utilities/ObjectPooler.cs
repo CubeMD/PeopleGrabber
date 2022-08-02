@@ -50,8 +50,7 @@ namespace Utilities
             return Instantiate(prefab, position, rotation, null);
         }
         
-        public static T Instantiate<T>(T prefab, Vector3 position, Quaternion rotation, 
-            Transform parent) where T : Object
+        public static T Instantiate<T>(T prefab, Vector3 position, Quaternion rotation, Transform parent) where T : Object
         {
             GameObject prefabGameObj = prefab is Component component ? component.gameObject : (prefab as GameObject);
             
@@ -61,7 +60,7 @@ namespace Utilities
             });
 
             GameObject instanceGameObj = g is Component comp ? comp.gameObject : (g as GameObject);
-
+            
             if (instanceGameObj != null)
             {
                 if (instanceGameObj.transform.parent != parent)
@@ -140,7 +139,7 @@ namespace Utilities
             gameObj.gameObject.SetActive(true);
         }
         
-                /// <summary>
+        /// <summary>
         /// Pools a game object
         /// </summary>
         /// <param name="obj">GameObject to pool</param>

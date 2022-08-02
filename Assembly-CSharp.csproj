@@ -59,7 +59,7 @@
      <Compile Include="Assets\Scripts\StateMachine\EmptyState.cs" />
      <Compile Include="Assets\Scripts\Characters\Grabber\GrabberAgent.cs" />
      <Compile Include="Assets\Scripts\UI\PointUpdate.cs" />
-     <Compile Include="Assets\Scripts\Camera\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\Cameras\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\StateMachine\State.cs" />
      <Compile Include="Assets\Scripts\Characters\Walker\States\WalkerWonderingState.cs" />
      <Compile Include="Assets\Scripts\Utilities\Extensions\NavMeshExtension.cs" />
@@ -70,6 +70,18 @@
      <Compile Include="Assets\Scripts\Characters\CharactersSpawner.cs" />
      <Compile Include="Assets\Scripts\Characters\Walker\States\BaseWalkerState.cs" />
      <Compile Include="Assets\Scripts\Characters\Walker\NpcWalker.cs" />
+     <Compile Include="Assets\NavMeshCleaner\Script\NavMeshCleaner.cs" />
+     <Compile Include="Assets\MLDebugTool\Scripts\Utilities\Singleton.cs" />
+     <Compile Include="Assets\MLDebugTool\Scripts\TimeScaleUtility.cs" />
+     <Compile Include="Assets\MLDebugTool\Scripts\Agent\CustomBaseAgent.cs" />
+     <Compile Include="Assets\MLDebugTool\Scripts\Trackers\EngineTracker.cs" />
+     <Compile Include="Assets\MLDebugTool\Scripts\Camera\BaseAgentCameraFollow.cs" />
+     <Compile Include="Assets\MLDebugTool\Scripts\Camera\OffsetBaseAgentCameraFollow.cs" />
+     <Compile Include="Assets\MLDebugTool\Scripts\AgentSelector.cs" />
+     <Compile Include="Assets\MLDebugTool\Scripts\Trackers\AgentTracker.cs" />
+     <Compile Include="Assets\MLDebugTool\Scripts\MlDebugTool.cs" />
+     <Compile Include="Assets\MLDebugTool\Scripts\Trackers\BaseTracker.cs" />
+     <Compile Include="Assets\MLDebugTool\Scripts\Utilities\VectorExtensions.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
@@ -841,14 +853,6 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="NavMeshComponents.csproj">
-      <Project>{3544e6d4-b81e-bd06-b5f5-9ca7a3b052cf}</Project>
-      <Name>NavMeshComponents</Name>
-    </ProjectReference>
-    <ProjectReference Include="NavMeshComponentsEditor.csproj">
-      <Project>{c6d621f6-c34b-aff5-fa8e-55e40a496772}</Project>
-      <Name>NavMeshComponentsEditor</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 7875934024653699116}
   - component: {fileID: 7875934024653699111}
   - component: {fileID: 7875934024653699110}
+  - component: {fileID: 6671299719085873688}
   - component: {fileID: 3385531384004920428}
   - component: {fileID: 2196198964971373758}
   - component: {fileID: 6996029580970397262}
@@ -179,7 +180,10 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
+  body: {fileID: 6996029580970397262}
   characterVisualization: {fileID: 2196198964971373758}
+  movementSpeed: 30
+  rotationSpeed: 25
 --- !u!114 &7875934024653699110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,13 +208,27 @@ MonoBehaviour:
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 1
   m_BehaviorName: My Behavior
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
   m_DeterministicInference: 0
   m_ObservableAttributeHandling: 0
+--- !u!114 &6671299719085873688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7875934024653699104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 20
+  TakeActionsBetweenDecisions: 1
 --- !u!114 &3385531384004920428
 MonoBehaviour:
   m_ObjectHideFlags: 0
